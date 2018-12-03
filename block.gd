@@ -1,41 +1,49 @@
 extends KinematicBody2D
 
 var multiplier = 1
-var cor #associar um número a cada cor e fazer uma cena para cada bloco
+var cor = randi()%5+1 #associar um número a cada cor
+var blockInfo
 
 func _ready():
-    generate_block()
+    #generate_block()
     set_physics_process(true)
 
 func _physics_process(delta):
-    var checker = position.y
-    position.y = clamp(position.y, 0, 567)
-    move_and_collide(Vector2(0, 1.5*multiplier))
+    var posY = position.y
+    move_and_collide(Vector2(0, 2*multiplier))
     if Input.is_action_just_released("ui_left"):
         position.x -= 67
     if Input.is_action_just_released("ui_right"):
         position.x += 67
-    position.x = clamp(position.x, 33, 368)
-    if Input.is_action_just_pressed("ui_down"):
+    if Input.is_action_just_released("ui_down"):
         multiplier = 3
-    position.y = clamp(position.y, 0, 567)
-    if position.y == checker:
-        set_physics_process(false)
-        multiplier = 1
+    check_walls()
+    check_landing(posY)
 
-func get_block_info():
-    var blockInfo = [get_global_position().x, int(get_global_position().y), cor]
-    return blockInfo
+func check_landing(auxPosY):
+    if position.y == auxPosY:
+        generate_block_info()
+        set_physics_process(false)
+
+func check_walls():
+    position.x = clamp(position.x, 33, 368)
+    position.y = clamp(position.y, 0, 567)
+
+func generate_block_info():
+    if get_global_position().y == 567:
+        blockInfo = [get_global_position().x, 566, cor]
+    else:
+        blockInfo = [get_global_position().x, int(get_global_position().y), cor]
 
 func generate_block():
-    cor = randi()%6+1
+    cor = randi()%5+1
     if cor == 1:
-        $Sprite.texture = load("res://Textures/ImagemAadicionar1png")
+        $Sprite.texture = load("res://Textures/ImagemPorAdicionar1.png")
     if cor == 2:
-        $Sprite.texture = load("res://Textures/ImagemAadicionar2.png")
+        $Sprite.texture = load("res://Textures/ImagemPorAdicionar2.png")
     if cor == 3:
-        $Sprite.texture = load("res://Textures/ImagemAadicionar3.png")
+        $Sprite.texture = load("res://Textures/ImagemPorAdicionar3.png")
     if cor == 4:
-        $Sprite.texture = load("res://Textures/ImagemAadicionar4.png")
+        $Sprite.texture = load("res://Textures/ImagemPorAdicionar4.png")
     if cor == 5:
-        $Sprite.texture = load("res://Textures/ImagemAadicionar5.png")
+        $Sprite.texture = load("res://Textures/ImagemPorAdicionar5.png")
