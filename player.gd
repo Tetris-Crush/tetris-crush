@@ -9,10 +9,11 @@ func _ready():
 func _process(delta):
     if game_running():
         board.add_board_state(active_block().blockInfo)
+        board.same_color_pieces(active_block().blockInfo)
         end_game(active_block().blockInfo[1])
         add_block()
-    if Input.is_action_just_pressed("ui_up"):
-        pause()  
+    if Input.is_action_just_pressed("ui_cancel"):
+        exit_game()
 
 func add_block():
     var block = load("res://block.tscn").instance()
@@ -23,12 +24,11 @@ func game_running():
 
 func end_game(posY):
     if posY == 104:
-        set_process(false)
+        exit_game()
 
 func active_block():
     return get_child(get_child_count()-1)
 
-func pause():
-    print("funciona pause")
-    get_tree().paused = true
-    active_block().set_physics_process(false)
+func exit_game():
+    get_tree().quit()
+
