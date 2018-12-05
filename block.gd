@@ -11,11 +11,11 @@ func _ready():
 func _physics_process(delta):
     var posY = position.y
     move_and_collide(Vector2(0, 2*multiplier))
-    if Input.is_action_just_released("ui_left"):
+    if Input.is_action_just_pressed("ui_left"):
         position.x -= 67
-    if Input.is_action_just_released("ui_right"):
+    if Input.is_action_just_pressed("ui_right"):
         position.x += 67
-    if Input.is_action_just_released("ui_down"):
+    if Input.is_action_just_pressed("ui_down"):
         multiplier = 3
     check_walls()
     check_landing(posY)
