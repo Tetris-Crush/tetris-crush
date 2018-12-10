@@ -8,9 +8,10 @@ func _ready():
 
 func _process(delta):
     if game_running():
-        board.add_board_state(active_block().blockInfo)
-        board.same_color_pieces(active_block().blockInfo)
-        end_game(active_block().blockInfo[1])
+        board.add_board_state(block_info())
+        if (board.destroyer(block_info())):
+            bye_blocks(board.releaseBlocks)
+        end_game(block_info()[1])
         add_block()
     if Input.is_action_just_pressed("ui_cancel"):
         exit_game()
@@ -32,3 +33,9 @@ func active_block():
 func exit_game():
     get_tree().quit()
 
+func block_info():
+    return active_block().blockInfo
+
+func bye_blocks(arr):
+    for i in range(arr.size()):
+        get_child(arr[i]+2).queue_free()
