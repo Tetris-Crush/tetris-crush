@@ -1,11 +1,12 @@
 extends KinematicBody2D
 
 var multiplier = 1
-var cor = randi()%5+1 #associar um número a cada cor
+var cor
 var blockInfo
 
 func _ready():
-    #generate_block()
+    randomize()
+    generate_block()
     set_physics_process(true)
 
 func _physics_process(delta):
@@ -36,14 +37,18 @@ func generate_block_info():
         blockInfo = [get_global_position().x, int(get_global_position().y), cor]
 
 func generate_block():
-    cor = randi()%5+1
+    cor = randi()%7+1
     if cor == 1:
-        $Sprite.texture = load("res://Textures/ImagemPorAdicionar1.png")
+        $Sprite.texture = load("res://blue block.jpg")
     if cor == 2:
-        $Sprite.texture = load("res://Textures/ImagemPorAdicionar2.png")
+        $Sprite.texture = load("res://green block.jpg")
     if cor == 3:
-        $Sprite.texture = load("res://Textures/ImagemPorAdicionar3.png")
+        $Sprite.texture = load("res://orange block.jpg")
     if cor == 4:
-        $Sprite.texture = load("res://Textures/ImagemPorAdicionar4.png")
+        $Sprite.texture = load("res://purple block.jpg")
     if cor == 5:
-        $Sprite.texture = load("res://Textures/ImagemPorAdicionar5.png")
+        $Sprite.texture = load("res://red block.jpg")
+    if cor == 6:
+        $Sprite.texture = load("res://yellow block.jpg")
+    if cor == 7:
+        $Sprite.texture = load("res://gay block.jpg")
