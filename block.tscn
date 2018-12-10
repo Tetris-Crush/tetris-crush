@@ -1,14 +1,18 @@
 [gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://block.gd" type="Script" id=1]
-[ext_resource path="res://efhgweh.jpg" type="Texture" id=2]
 
-[sub_resource type="RectangleShape2D" id=1]
+[sub_resource type="StreamTexture" id=1]
+
+flags = 4
+load_path = ""
+
+[sub_resource type="RectangleShape2D" id=2]
 
 custom_solver_bias = 0.0
 extents = Vector2( 33, 33 )
 
-[node name="KinematicBody2D" type="KinematicBody2D" index="0"]
+[node name="KinematicBody2D" type="KinematicBody2D"]
 
 position = Vector2( 33, 33 )
 input_pickable = false
@@ -21,12 +25,12 @@ _sections_unfolded = [ "Collision", "Material", "Pickable", "Transform", "Visibi
 [node name="Sprite" type="Sprite" parent="." index="0"]
 
 scale = Vector2( 0.29, 0.29 )
-texture = ExtResource( 2 )
+texture = SubResource( 1 )
 _sections_unfolded = [ "Animation", "Material", "Offset", "Transform", "Visibility", "Z Index" ]
 
 [node name="hitbox" type="CollisionShape2D" parent="." index="1"]
 
-shape = SubResource( 1 )
+shape = SubResource( 2 )
 _sections_unfolded = [ "Transform" ]
 
 

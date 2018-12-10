@@ -3,7 +3,7 @@
 [ext_resource path="res://player.gd" type="Script" id=1]
 [ext_resource path="res://MakingMap2.png" type="Texture" id=2]
 
-[node name="floor" type="Node"]
+[node name="floor" type="Node" index="0"]
 
 script = ExtResource( 1 )
 
