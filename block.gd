@@ -36,6 +36,9 @@ func generate_block_info():
     else:
         blockInfo = [get_global_position().x, int(get_global_position().y), cor]
 
+func set_process_true():
+    set_physics_process(true)
+
 func generate_block():
     cor = randi()%7+1
     if cor == 1:
