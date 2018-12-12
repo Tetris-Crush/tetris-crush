@@ -11,10 +11,12 @@ func _process(delta):
         board.add_board_state(block_info())
         if (board.destroyer(block_info())):
             bye_blocks(board.releaseBlocks)
+            go_down(board.fall_down())
         end_game(block_info()[1])
         add_block()
     if Input.is_action_just_pressed("ui_cancel"):
-        exit_game()
+        active_block().set_physics_process(false)
+        set_process(false)
 
 func add_block():
     var block = load("res://block.tscn").instance()
@@ -38,4 +40,10 @@ func block_info():
 
 func bye_blocks(arr):
     for i in range(arr.size()):
-        get_child(arr[i]+2).queue_free()
+        get_child(arr[i]).queue_free()
+
+func go_down(arr):
+    if (arr.size() > 0):
+        for i in range(arr.size()):
+            get_child(arr[i]).set_physics_process(true)
+    

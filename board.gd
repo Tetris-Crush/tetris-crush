@@ -58,9 +58,31 @@ func destroyer(arr): #arr é a blockInfo [posição x, posição y, cor]
     
     return false
 
-func blocks_to_release(arr): #arr é a func destroyer(arr)
+func blocks_to_release(arr):
     releaseBlocks = []
     for i in range(boardState.size()):
         for j in range(arr.size()):
             if arr[j]==boardState[i]:
-                releaseBlocks.append(i)
+                releaseBlocks.append(i+2)    
+
+func get_coordinates(index):
+    return [boardState[index][0], boardState[index][1]]
+
+func has_block_below(arr):
+    for i in range(boardState.size()):
+        if arr[1]+66<=566 and [arr[0],arr[1]+66] == [boardState[i][0], boardState[i][1]]:
+            return true
+    return false
+
+func go_down_one_lvl(index):
+    if boardState[index][1]<=500:
+        boardState[index][1]+=66
+
+func fall_down(): #só desce uma casa na boardState
+    var blocks_to_go_down = []
+    for i in range(boardState.size()):
+        if !(has_block_below(get_coordinates(i))) and get_coordinates(i)[1]<=500:
+            go_down_one_lvl(i)
+            blocks_to_go_down.append(i+3)
+    return blocks_to_go_down
+    
