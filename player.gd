@@ -15,8 +15,7 @@ func _process(delta):
         end_game(block_info()[1])
         add_block()
     if Input.is_action_just_pressed("ui_cancel"):
-        active_block().set_physics_process(false)
-        set_process(false)
+        exit_game()
 
 func add_block():
     var block = load("res://block.tscn").instance()
@@ -43,7 +42,5 @@ func bye_blocks(arr):
         get_child(arr[i]).queue_free()
 
 func go_down(arr):
-    if (arr.size() > 0):
-        for i in range(arr.size()):
-            get_child(arr[i]).set_physics_process(true)
-    
+    for i in range(arr.size()):
+        get_child(arr[i]).position.y+=66
