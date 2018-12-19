@@ -2,16 +2,18 @@ extends Node
 
 var board = load("res://board.tscn").instance()
 
-func _ready():  
+func _ready():
+    set_process(true)
     add_child(board)
     add_block()
 
 func _process(delta):
     if game_running():
         board.add_board_state(block_info())
-        if (board.destroyer(block_info())):
-            bye_blocks(board.releaseBlocks)
-            go_down(board.fall_down())
+        if (block_info()[2]!=8):
+            if (board.destroyer(block_info())):
+                bye_blocks(board.releaseBlocks)
+                go_down(board.fall_down())
         end_game(block_info()[1])
         add_block()
     if Input.is_action_just_pressed("ui_cancel"):
