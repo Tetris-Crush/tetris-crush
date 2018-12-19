@@ -63,7 +63,7 @@ func blocks_to_release(arr):
     for i in range(boardState.size()):
         for j in range(arr.size()):
             if arr[j]==boardState[i]:
-                releaseBlocks.append(i+2)    
+                releaseBlocks.append(i+1)    
 
 func get_coordinates(index):
     return [boardState[index][0], boardState[index][1]]
@@ -83,6 +83,5 @@ func fall_down(): #só desce uma casa na boardState
     for i in range(boardState.size()):
         if !(has_block_below(get_coordinates(i))) and get_coordinates(i)[1]<=500:
             go_down_one_lvl(i)
-            blocks_to_go_down.append(i+3)
+            blocks_to_go_down.append(i+2)
     return blocks_to_go_down
-    

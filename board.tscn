@@ -1,9 +1,21 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://board.gd" type="Script" id=1]
+[ext_resource path="res://font/image-2018-12-19.jpg" type="Texture" id=2]
+
+[sub_resource type="StreamTexture" id=1]
+
+flags = 0
+load_path = ""
 
 [node name="board" type="Node"]
 
 script = ExtResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="." index="0"]
+
+position = Vector2( 200.035, 300.104 )
+texture = ExtResource( 2 )
+normal_map = SubResource( 1 )
 
 

@@ -36,11 +36,8 @@ func generate_block_info():
     else:
         blockInfo = [get_global_position().x, int(get_global_position().y), cor]
 
-func set_process_true():
-    set_physics_process(true)
-
 func generate_block():
-    cor = randi()%7+1
+    cor = randi()%8+1
     if cor == 1:
         $Sprite.texture = load("res://blue block.jpg")
     if cor == 2:
@@ -54,4 +51,6 @@ func generate_block():
     if cor == 6:
         $Sprite.texture = load("res://yellow block.jpg")
     if cor == 7:
-        $Sprite.texture = load("res://gay block.jpg")
+        $Sprite.texture = load("res://pink block.jpg")
+    if cor == 8:
+        $Sprite.texture = load("res://Unbreakable.png")
