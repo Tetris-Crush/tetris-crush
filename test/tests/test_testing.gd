@@ -11,7 +11,9 @@ func before_all():
 func after_all():
 	gut.p("ran run teardown", 2)
 
+
 #Four tests, five if you count checking for textures
+
 
 
 func test_assert_eq_number_not_equal():

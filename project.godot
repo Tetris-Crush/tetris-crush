@@ -10,13 +10,17 @@ config_version=3
 
 [application]
 
+
 config/name="Tetris Crush!"
+
 run/main_scene="res://TittleScene/TittleScreen.tscn"
 config/icon="res://icon.png"
 
 [display]
 
+
 window/size/width=401
+
 window/size/resizable=false
 
 [rendering]
